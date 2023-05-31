@@ -24,6 +24,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Table(name = "Cliente", schema = "caso73")
 public class Cliente {
 	@Id
