@@ -27,7 +27,7 @@ public class Ejercicio {
 	@JoinColumn(name="id_actividad")
 	private Actividad_Fisica ejercicio;
 	
-	@Column(name="peso_ejercicio", nullable=false)
+	@Column(name="peso_ejercicio")
 	private BigDecimal peso_ejercicio;
 	
 	@Column(name="repeticiones", nullable=false)

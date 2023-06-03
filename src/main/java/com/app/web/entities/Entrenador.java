@@ -20,7 +20,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "Entrenador", schema = "caso73")
 public class Entrenador {
 	@Id
-    private Integer id_persona;
+	@Column(name = "persona_id")
+	private int persona_id;
 	@Column(name = "direccion", nullable = false)
 	private String direccion;
 	@OneToOne

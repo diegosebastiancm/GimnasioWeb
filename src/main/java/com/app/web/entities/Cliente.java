@@ -28,7 +28,8 @@ import java.util.List;
 @Table(name = "Cliente", schema = "caso73")
 public class Cliente {
 	@Id
-	private Integer id_persona;
+	@Column(name = "persona_id")
+	private int persona_id;
 	@Column(name = "peso", nullable = false)
 	private BigDecimal peso;
 
@@ -51,9 +52,12 @@ public class Cliente {
 
 	@Column(name = "edad", nullable = false)
 	private Integer edad;
-	
+
 	@OneToMany(mappedBy = "cliente")
 	private List<Rutina_Semanal> rutina_semanal;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Ejercicio_Realizado> ejercicioRealizado;
 
 	@OneToOne
 	@MapsId

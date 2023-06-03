@@ -29,7 +29,7 @@ public class Ejercicio_Realizado {
 	@Column(name = "fecha", nullable = false)
 	private Date fecha;
 
-	@Column(name="peso_levantado", nullable=false)
+	@Column(name="peso_levantado")
 	private BigDecimal peso_levantado;
 	
 	@Column(name="repeticiones_realizadas", nullable=false)
@@ -39,11 +39,11 @@ public class Ejercicio_Realizado {
 	private BigDecimal series_realizadas;
 	
 	@ManyToOne
-	@JoinColumn(name="persona_id")
+	@JoinColumn(name = "persona_id")
 	private Cliente cliente;
 	
 	@OneToOne
-	@JoinColumn(name="actividad_id")
-	private Actividad_Fisica ejericio;
+	@JoinColumn(name="actividad_id", referencedColumnName = "id_actividad")
+	private Actividad_Fisica ejercicio;
 	
 }
