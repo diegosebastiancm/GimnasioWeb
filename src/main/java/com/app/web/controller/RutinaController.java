@@ -32,17 +32,17 @@ public class RutinaController {
 	 */
 
 	@GetMapping("/rutinas")
-	public String verRutina(@PathVariable("id") Integer id, Model modelo) {
-		List<Rutina> rutinas = repositorio.findByClienteId(id);
+	public String verRutina(Model modelo) {
+		List<Rutina> rutinas = repositorio.findAll();
 		modelo.addAttribute("rutinas", rutinas);
-		return "cliente_rutinas";
+		return "rutinas";
 	}
 
-	@GetMapping("/rutina/nuevo")
+	@GetMapping("/rutinas/nuevo")
 	public String mostrarFormulario(Model modelo) {
 		List<Ejercicio> listaEjercicios = repositorioEjercicio.findAll();
 		Rutina rutina = new Rutina();
-		modelo.addAttribute("seleccion", rutina);
+		modelo.addAttribute("rutinas", rutina);
 		modelo.addAttribute("ejercicios", listaEjercicios);
 		return "crear_rutina";
 	}
@@ -50,7 +50,7 @@ public class RutinaController {
 	@PostMapping("/rutinas")
 	public String guardarRutina(@ModelAttribute("rutina") Rutina rutina) {
 		repositorio.save(rutina);
-		return "redirect:/rutinass";
+		return "redirect:/rutinas";
 	}
 
 	@GetMapping("/rutinas/{id_rutina}/editar")
@@ -62,7 +62,7 @@ public class RutinaController {
 	}
 
 	@PostMapping("/rutinas/{id_rutina}")
-	public String actualizarRutina(@PathVariable("id") Integer id, @ModelAttribute("seleccion") Rutina rutina,
+	public String actualizarRutina(@PathVariable("id_rutina") Integer id, @ModelAttribute("rutina") Rutina rutina,
 			Model modelo) {
 		List<Ejercicio> listaEjercicios = repositorioEjercicio.findAll();
 		Rutina rutinaActual = repositorio.findById(id).get();
