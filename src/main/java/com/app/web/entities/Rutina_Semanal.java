@@ -32,6 +32,7 @@ public class Rutina_Semanal {
 	@Column(name = "fecha_de_fin", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date fecha_de_fin;
+	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
