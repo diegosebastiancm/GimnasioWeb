@@ -77,7 +77,7 @@ public class EjercicioController {
 		return "redirect:/ejercicios";
 	}
 
-	@GetMapping("/rutinas/{id}")
+	@GetMapping("/ejercicios/{id}/eliminar")
 	public String eliminarEjercicio(@PathVariable("id") Integer id) {
 		repositorio.deleteById(id);
 		return "redirect:/ejercicios";

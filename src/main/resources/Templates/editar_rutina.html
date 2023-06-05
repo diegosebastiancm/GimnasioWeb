@@ -15,28 +15,29 @@
 				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 				<h1 class="text-center">Registro de Rutina</h1>
 				<div class="card-body">
-					<form th:action="@{/rutinas}" th:object="${rutinas}"
-						method="post">
+					<form
+						th:action="@{/rutinas/{id}/editar(id=${rutinas.id_rutina_diaria})}"
+						th:object="${rutinas}" method="post">
 						<div class="form-group">
 							<label>Dia de la Semana:</label> <input type="text"
-								name="dia_semana" th:field="*{dia_semana}"
-								class="form-control" placeholder="Digite el día de la semana">
+								name="dia_semana" th:field="*{dia_semana}" class="form-control"
+								placeholder="Digite el día de la semana">
 						</div>
 						<div class="form-group">
-							<label>Rutima Semanal: </label> <select th:field="*{rutinaSemanal}"
-								class="form-control" required>
+							<label>Rutima Semanal: </label> <select
+								th:field="*{rutinaSemanal.id_rutina_semanal}" class="form-control" required>
 								<th:block th:each="rutina : ${rutinaSemanas}">
 									<option th:text="${rutina.id_rutina_semanal}"
-									th:value="${rutina.id_rutina_semanal}"></option>
+										th:value="${rutina.id_rutina_semanal}"></option>
 								</th:block>
 							</select>
 						</div>
 						<div class="form-group">
-							<label>Rutima Semanal: </label> <select th:field="*{objetivo}"
+							<label>Rutima Semanal: </label> <select th:field="*{objetivo.id_objetivo}"
 								class="form-control" required>
 								<th:block th:each="objetivo : ${objetivos}">
 									<option th:text="${objetivo.nombre_objetivo}"
-									th:value="${objetivo.id_objetivo}"></option>
+										th:value="${objetivo.id_objetivo}"></option>
 								</th:block>
 							</select>
 						</div>

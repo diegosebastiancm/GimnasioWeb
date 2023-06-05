@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.app.web.entities.Ejercicio;
+import com.app.web.entities.Objetivo;
 import com.app.web.entities.Rutina;
+import com.app.web.entities.Rutina_Semanal;
 import com.app.web.repository.EjercicioRepository;
+import com.app.web.repository.ObjetivoRepository;
 import com.app.web.repository.RutinaRepository;
+import com.app.web.repository.RutinaSemanalRepository;
 
 @Controller
 public class RutinaController {
@@ -23,6 +27,12 @@ public class RutinaController {
 
 	@Autowired
 	EjercicioRepository repositorioEjercicio;
+	
+	@Autowired
+	RutinaSemanalRepository repositorioSemana;
+	
+	@Autowired
+	ObjetivoRepository repositorioObjetivo;
 
 	/*
 	 * @GetMapping("/cliente/{id}/rutinas") public String
@@ -41,9 +51,13 @@ public class RutinaController {
 	@GetMapping("/rutinas/nuevo")
 	public String mostrarFormulario(Model modelo) {
 		List<Ejercicio> listaEjercicios = repositorioEjercicio.findAll();
+		List<Rutina_Semanal> listaRutinas = repositorioSemana.findAll();
+		List<Objetivo> listaObjetivos = repositorioObjetivo.findAll();
 		Rutina rutina = new Rutina();
 		modelo.addAttribute("rutinas", rutina);
 		modelo.addAttribute("ejercicios", listaEjercicios);
+		modelo.addAttribute("rutinaSemanas", listaRutinas);
+		modelo.addAttribute("objetivos", listaObjetivos);
 		return "crear_rutina";
 	}
 
@@ -56,8 +70,12 @@ public class RutinaController {
 	@GetMapping("/rutinas/{id_rutina}/editar")
 	public String mostrarFormularioEditar(@PathVariable("id_rutina") Integer id_rutina, Model modelo) {
 		List<Ejercicio> listaEjercicios = repositorioEjercicio.findAll();
+		List<Rutina_Semanal> listaRutinas = repositorioSemana.findAll();
+		List<Objetivo> listaObjetivos = repositorioObjetivo.findAll();
 		modelo.addAttribute("rutinas", repositorio.findById(id_rutina).get());
 		modelo.addAttribute("ejercicios", listaEjercicios);
+		modelo.addAttribute("rutinaSemanas", listaRutinas);
+		modelo.addAttribute("objetivos", listaObjetivos);
 		return "editar_rutina";
 	}
 
@@ -76,7 +94,7 @@ public class RutinaController {
 		return "redirect:/rutinas";
 	}
 
-	@GetMapping("/rutinas/{id_rutina}")
+	@GetMapping("/rutinas/{id_rutina}/eliminar")
 	public String eliminarRutina(@PathVariable("id_rutina") Integer id) {
 		repositorio.deleteById(id);
 		return "redirect:/rutinas";

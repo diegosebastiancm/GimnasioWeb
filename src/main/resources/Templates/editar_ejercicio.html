@@ -19,7 +19,7 @@
 						th:action="@{/ejercicios/{id}/editar(id=${ejercicio.id_ejercicio})}"
 						th:object="${ejercicio}" method="post">
 						<div class="form-group">
-							<label>Actividad Física: </label> <select th:field="*{ejercicio}"
+							<label>Actividad Física: </label> <select th:field="*{ejercicio.id_actividad}"
 								class="form-control" required>
 								<th:block th:each="actividad : ${actividades}">
 									<option th:text="${actividad.nombre_actividad}"
@@ -45,7 +45,7 @@
 								placeholder="Digite las series que requiere el ejercicio">
 						</div>
 						<div class="form-group">
-							<label>Dia Rutina: </label> <select th:field="*{rutina}"
+							<label>Dia Rutina: </label> <select th:field="*{rutina.id_rutina_diaria}"
 								class="form-control" required>
 								<option th:each="rutina : ${rutinas}"
 									th:text="${rutina.dia_semana}"
