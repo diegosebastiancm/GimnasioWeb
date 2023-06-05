@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<title>Actividad Fisica</title>
+</head>
+<body>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Nombre Actividad</th>
+				<th scope="col">Video Instructivo</th>
+				<th scope="col"></th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="actividad : ${actividades}">
+				<td th:text="${actividad.id_actividad}">Id</td>
+				<td th:text="${actividad.nombre_actividad}">Nombre Actividad</td>
+				<td th:text="${actividad.link}">Video Instructivo</td>
+				<td><a
+					th:href="@{/actividades/{id}/editar(id=${actividad.id_actividad})}"
+					class="btn btn-secondary">Editar</a></td>
+				<td><a
+					th:href="@{/actividades/{id}/eliminar(id=${actividad.id_actividad})}"
+					class="btn btn-danger">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/actividades/nuevo}">Agregar Actividad</a>
+</body>
+</html>

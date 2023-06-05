@@ -2,6 +2,7 @@ package com.app.web.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,9 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.app.web.entities.Actividad_Fisica;
 import com.app.web.entities.Ejercicio;
+import com.app.web.entities.Rutina;
 import com.app.web.repository.ActividadFisicaRepository;
 import com.app.web.repository.EjercicioRepository;
+import com.app.web.repository.RutinaRepository;
 
+@Controller
 public class EjercicioController {
 
 	@Autowired
@@ -20,19 +24,24 @@ public class EjercicioController {
 	@Autowired
 	ActividadFisicaRepository repositorioActividad;
 	
+	@Autowired
+	RutinaRepository repositorioRutina;
+	
 	@GetMapping("/ejercicios")
-	public String verRutina(Model modelo) {
+	public String verEjercicio(Model modelo) {
 		List<Ejercicio> ejercicios = repositorio.findAll();
 		modelo.addAttribute("ejercicios", ejercicios);
-		return "ejercicios";
+		return "index_ejercicio";
 	}
 
 	@GetMapping("/ejercicios/nuevo")
 	public String mostrarFormulario(Model modelo) {
 		List<Actividad_Fisica> listaActividades = repositorioActividad.findAll();
+		List<Rutina> listaRutinas = repositorioRutina.findAll();
 		Ejercicio ejercicio = new Ejercicio();
 		modelo.addAttribute("ejercicio", ejercicio);
 		modelo.addAttribute("actividades", listaActividades);
+		modelo.addAttribute("rutinas", listaRutinas);
 		return "crear_ejercicio";
 	}
 
@@ -45,8 +54,10 @@ public class EjercicioController {
 	@GetMapping("/ejercicios/{id}/editar")
 	public String mostrarFormularioEditar(@PathVariable("id") Integer id, Model modelo) {
 		List<Actividad_Fisica> listaActividades = repositorioActividad.findAll();
-		modelo.addAttribute("ejercicios", repositorio.findById(id).get());
+		List<Rutina> listaRutinas = repositorioRutina.findAll();
+		modelo.addAttribute("ejercicio", repositorio.findById(id).get());
 		modelo.addAttribute("actividades", listaActividades);
+		modelo.addAttribute("rutinas", listaRutinas);
 		return "editar_ejercicio";
 	}
 

@@ -35,7 +35,7 @@ public class RutinaController {
 	public String verRutina(Model modelo) {
 		List<Rutina> rutinas = repositorio.findAll();
 		modelo.addAttribute("rutinas", rutinas);
-		return "rutinas";
+		return "index_rutina";
 	}
 
 	@GetMapping("/rutinas/nuevo")
@@ -81,6 +81,15 @@ public class RutinaController {
 		repositorio.deleteById(id);
 		return "redirect:/rutinas";
 	}
+	
+	@GetMapping("/rutinas/{id}/ejercicios")
+	public String verEjerciciosRutina(@PathVariable("id")Integer id, Model modelo) {
+		Rutina rutina = repositorio.findById(id).get();
+		List<Ejercicio> listaEjercicios = repositorioEjercicio.findByRutina(rutina);
+		modelo.addAttribute("ejercicios", listaEjercicios);
+		return "index_ejercicio";
+	}
+	
 
 	/*
 	 * @GetMapping("/cliente/{id}/rutina/historico") public String verHistorico() {

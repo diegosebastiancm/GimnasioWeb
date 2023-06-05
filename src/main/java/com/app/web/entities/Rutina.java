@@ -25,7 +25,7 @@ public class Rutina {
 	@Column(name = "dia_semana", nullable=false)
 	private String dia_semana;
 	@ManyToOne
-	@JoinColumn(name = "rutina_semanal_id")
+	@JoinColumn(name = "id_rutina_semanal")
 	private Rutina_Semanal rutinaSemanal;
 
 	@ManyToOne

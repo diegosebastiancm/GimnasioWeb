@@ -1,29 +1,27 @@
 package com.app.web.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.app.web.entities.Actividad_Fisica;
-import com.app.web.entities.Ejercicio;
-import com.app.web.entities.Rutina;
 import com.app.web.repository.ActividadFisicaRepository;
 
+@Controller
 public class ActividadFisicaController {
 
 	@Autowired
 	ActividadFisicaRepository repositorio;
 
 	@GetMapping("/actividades")
-	public String verActividad(@PathVariable("id") Integer id, Model modelo) {
+	public String verActividad(Model modelo) {
 		List<Actividad_Fisica> actividades = repositorio.findAll();
 		modelo.addAttribute("actividades", actividades);
-		return "actividades";
+		return "index_actividad";
 	}
 
 	@GetMapping("/actividades/nuevo")
@@ -56,7 +54,7 @@ public class ActividadFisicaController {
 		return "redirect:/actividades";
 	}
 
-	@GetMapping("/actividades/{id}")
+	@GetMapping("/actividades/{id}/eliminar")
 	public String eliminarActividad(@PathVariable("id") Integer id) {
 		repositorio.deleteById(id);
 		return "redirect:/actividades";

@@ -37,6 +37,6 @@ public class Ejercicio {
 	private BigDecimal series;
 	
 	@ManyToOne
-	@JoinColumn(name="Rutina_id")
+	@JoinColumn(name="id_rutina_diaria")
 	private Rutina rutina;
 }
