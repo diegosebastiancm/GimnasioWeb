@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Listado de Ejercicios Realizados</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+	<h1>Listado de Ejercicios Realizados</h1>
+		<table class="table table-bordered">
+			<thead class="table-success">
+				<tr>
+					<td>Nombre</td>
+					<td>Peso</td>
+					<td>Series</td>
+					<td>Repeticiones</td>
+					<td>Acciones</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ejercicioRealizado: ${ejerciciosRealizados}">
+				    <td th:text="${ejercicioRealizado.ejercicio.nombre_actividad}"></td>
+					<td th:text="${ejercicioRealizado.peso_levantado}"></td>
+					<td th:text="${ejercicioRealizado.series_realizadas}"></td>
+					<td th:text="${ejercicioRealizado.repeticiones_realizadas}"></td>
+				<td> 
+				  <a th:href="@{/ejercicioRealizado/ver/{id}(id=${ejercicioRealizado.id_ejercicio_realizado})}" class="btn btn-info">Ver</a>
+                  <a th:href="@{/ejercicioRealizado/editar/{id}(id=${ejercicioRealizado.id_ejercicio_realizado})}" class="btn btn-info">Editar</a>
+                  <a th:href="@{/ejercicioRealizado/{id}(id=${ejercicioRealizado.id_ejercicio_realizado})}" class="btn btn-info">Eliminar</a>
+                  </td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="/ejercicioRealizado/registrar"><button class="btn btn-info">Agregar Ejercicio Realizado</button></a>
+	</div>
+</body>
+</html>
