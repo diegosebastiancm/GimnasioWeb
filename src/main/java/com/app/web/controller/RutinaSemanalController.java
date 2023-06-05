@@ -1,7 +1,6 @@
 package com.app.web.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +26,7 @@ public class RutinaSemanalController {
 	public String verRutinaSemanal(Model modelo) {
 		List<Rutina_Semanal> rutinasSemanales = repositorio.findAll();
 		modelo.addAttribute("rutinas", rutinasSemanales);
-		return "rutinas_semanales";
+		return "index_rutina_semanal";
 	}
 
 	@GetMapping("/rutinas_semana/nuevo")
@@ -68,9 +67,17 @@ public class RutinaSemanalController {
 		return "redirect:/rutinas_semana";
 	}
 
-	@GetMapping("/rutinas_semana/{id_rutina}")
+	@GetMapping("/rutinas_semana/{id_rutina}/eliminar")
 	public String eliminarRutinaSemanal(@PathVariable("id_rutina") Integer id) {
 		repositorio.deleteById(id);
 		return "redirect:/rutinas_semana";
+	}
+	
+	@GetMapping("/rutinas_Semana/{id}/rutinas")
+	public String mostrarRutinasDiarias(@PathVariable("id")Integer id, Model modelo) {
+		Rutina_Semanal rutina = repositorio.findById(id).get();
+		List<Rutina> listaRutinas = repositorioRutina.findByRutinaSemanal(rutina);
+		modelo.addAttribute("rutinas", listaRutinas);
+		return "index_rutina";
 	}
 }
