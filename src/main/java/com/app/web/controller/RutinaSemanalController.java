@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.app.web.entities.Cliente;
 import com.app.web.entities.Rutina;
 import com.app.web.entities.Rutina_Semanal;
+import com.app.web.repository.ClienteRepository;
 import com.app.web.repository.RutinaRepository;
 import com.app.web.repository.RutinaSemanalRepository;
 
@@ -22,6 +25,9 @@ public class RutinaSemanalController {
 	@Autowired
 	RutinaRepository repositorioRutina;
 	
+	@Autowired
+	ClienteRepository repositorioCliente;
+	
 	@GetMapping("/rutinas_semana")
 	public String verRutinaSemanal(Model modelo) {
 		List<Rutina_Semanal> rutinasSemanales = repositorio.findAll();
@@ -32,9 +38,11 @@ public class RutinaSemanalController {
 	@GetMapping("/rutinas_semana/nuevo")
 	public String mostrarFormulario(Model modelo) {
 		List<Rutina> listaRutinas = repositorioRutina.findAll();
+		List<Cliente> listaclientes = repositorioCliente.findAll();
 		Rutina_Semanal rutina = new Rutina_Semanal();
 		modelo.addAttribute("rutinasSemanales", rutina);
 		modelo.addAttribute("rutinas", listaRutinas);
+		modelo.addAttribute("clientes", listaclientes);
 		return "crear_rutina_semanal";
 	}
 
@@ -47,8 +55,10 @@ public class RutinaSemanalController {
 	@GetMapping("/rutinas_semana/{id_rutina}/editar")
 	public String mostrarFormularioEditar(@PathVariable("id_rutina") Integer id_rutina, Model modelo) {
 		List<Rutina> listaRutinas = repositorioRutina.findAll();
+		List<Cliente> listaclientes = repositorioCliente.findAll();
 		modelo.addAttribute("rutinasSemanales", repositorio.findById(id_rutina).get());
 		modelo.addAttribute("rutinas", listaRutinas);
+		modelo.addAttribute("clientes", listaclientes);
 		return "editar_rutina_semanal";
 	}
 

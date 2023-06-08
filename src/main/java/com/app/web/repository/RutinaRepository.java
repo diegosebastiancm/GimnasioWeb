@@ -11,4 +11,6 @@ import com.app.web.entities.Rutina_Semanal;
 public interface RutinaRepository extends JpaRepository<Rutina, Integer>{
 	
 	List<Rutina> findByRutinaSemanal(Rutina_Semanal rutinaSemanal);
+	
+	
 }
