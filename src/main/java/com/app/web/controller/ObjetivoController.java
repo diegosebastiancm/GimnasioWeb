@@ -18,7 +18,7 @@ public class ObjetivoController {
 	@Autowired
 	private ObjetivoRepository objetivoRepository;
     
-    @GetMapping({"/","/objetivos","/objetivos/listar"})
+    @GetMapping({"/objetivos","/objetivos/listar"})
 	public String listar(Model model) {
 		List<Objetivo> objetivos = objetivoRepository.findAll();
 		model.addAttribute("objetivos",objetivos);
