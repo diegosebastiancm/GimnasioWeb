@@ -9,22 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import com.app.web.entities.Actividad_Fisica;
-import com.app.web.entities.Cliente;
 import com.app.web.entities.Ejercicio_Realizado;
-import com.app.web.repository.Actividad_FisicaRepository;
-import com.app.web.repository.ClienteRepository;
 import com.app.web.repository.Ejercicio_RealizadoRepository;
 
 @Controller
 public class Ejercicio_RealizadoController {
 	@Autowired
 	private Ejercicio_RealizadoRepository ejercicio_RealizadoRepository;
-	@Autowired
-	private ClienteRepository clienteRepository;
-	@Autowired
-	private Actividad_FisicaRepository actividadRepository;
 
 	@GetMapping({ "/ejerciciosRealizados", "/ejerciciosRealizados/listar" })
 	public String listar(Model model) {

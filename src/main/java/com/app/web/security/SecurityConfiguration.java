@@ -34,7 +34,8 @@ public class SecurityConfiguration {
 	    @Autowired
 	    private ClienteRepository clienteRepository;
 
-	    @Bean
+	    @SuppressWarnings("deprecation")
+		@Bean
 	    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    	 http.authorizeRequests()
 	            .requestMatchers("/registro").permitAll()
