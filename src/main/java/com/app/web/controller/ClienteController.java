@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import com.app.web.entities.Rutina;
 import com.app.web.entities.Rutina_Semanal;
 import com.app.web.repository.ClienteRepository;
@@ -24,6 +25,11 @@ public class ClienteController {
 
 	@Autowired
 	RutinaSemanalRepository repositorioSemana;
+
+	@GetMapping("/inicio")
+	public String inicio() {
+		return "index";
+	}
 
 	@GetMapping("/cliente/{id}/rutinasSemanales")
 	public String verRutinaSemanal(@PathVariable("id") Integer id, Model modelo) {
