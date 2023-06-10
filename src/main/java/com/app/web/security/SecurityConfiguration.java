@@ -38,6 +38,8 @@ public class SecurityConfiguration {
 	    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    	 http.authorizeRequests()
 	            .requestMatchers("/registro").permitAll()
+	            .requestMatchers("/images/**").permitAll()
+	            .requestMatchers("/css/**").permitAll()
 	            .requestMatchers("/admin/**").hasAuthority("ADMIN")
 	            .requestMatchers("/cliente/**").hasAuthority("CLIENTE")
 	            .requestMatchers("/entrenador/**").hasAuthority("ENTRENADOR")
@@ -56,6 +58,7 @@ public class SecurityConfiguration {
 	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 	            .logoutSuccessUrl("/login?logout")
 	            .permitAll();
+	    	 
 			return http.build();
 	    }
 
