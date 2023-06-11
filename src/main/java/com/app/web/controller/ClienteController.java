@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.app.web.entities.Cliente;
 import com.app.web.entities.Rutina;
 import com.app.web.entities.Rutina_Semanal;
 import com.app.web.repository.ClienteRepository;
@@ -26,19 +28,10 @@ public class ClienteController {
 	@Autowired
 	RutinaSemanalRepository repositorioSemana;
 
-	@GetMapping("/inicio")
-	public String inicio() {
-		return "index";
-	}
-
 	@GetMapping()
-	public String verPaginaDeInicio(Model modelo) {
-		return "indexadmin";
-	}
-
-	@GetMapping("/prueba")
-	public String verPaginaDeInicioq(Model modelo) {
-		return "index";
+	public String inicio(Model modelo, Cliente cliente){
+		
+	    return "inicio_cliente";
 	}
 
 	@GetMapping("/{id}/rutinasSemanales")

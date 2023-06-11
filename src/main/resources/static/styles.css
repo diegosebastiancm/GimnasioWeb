@@ -8,15 +8,19 @@
 	background-color: #e6e6e6;
 }
 
-body {
+.clienteRutinas {
 	background-color: #8F8F8F;
+}
+
+.inicioCliente {
+	background-color: #182350;
 }
 
 .container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-gap: 30px;
-	transition:all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 
 .imagen {
@@ -36,8 +40,8 @@ body {
 	left: 0;
 	background-color: rgba(0, 0, 0, 0.7);
 	width: 100%;
-	height: 0; 
-	transition : 1s ease;
+	height: 0;
+	transition: 1s ease;
 	overflow: hidden;
 	border-radius: 20px;
 }
@@ -80,6 +84,35 @@ body {
 	color: white;
 }
 
+.contenedor {
+	width: 100%;
+	height: 700px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: url(/images/imagenInicio.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+@media ( max-width : 1000px) {
+	.contenedor {
+    background-position: right center;
+  }
+}
+
+@media ( max-width : 768px) {
+	.contenedor {
+    background-position: right center;
+  }
+}
+
+@media ( max-width : 480px) {
+	.contenedor {
+    background-position: right center;
+  }
+}
+
 .logo {
 	width: 100px;
 	height: 100px;
@@ -89,4 +122,70 @@ body {
 
 .navbar-nav {
 	font-size: 1.2rem;
+}
+
+.pie-pagina {
+	width: 100%;
+	background-color: #4D4D4D;
+}
+
+.pie-pagina .grupo1 {
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 50px;
+	padding: 30px 0px;
+}
+
+.pie-pagina .grupo1 .box figure img {
+	width: 200px;
+	margin-left: 50px;
+}
+
+.pie-pagina .grupo1 .box  h2 {
+	color: white;
+	margin-bottom: 25px;
+	font-size: 20px;
+}
+
+.pie-pagina .grupo1 .box  p {
+	color: #252525;
+	margin-bottom: 10px;
+}
+
+.pie-pagina .grupo1 .red-social a {
+	display: inline-block;
+	text-decoration: none;
+	width: 45px;
+	height: 45px;
+	line-height: 45px;
+	color: white;
+	margin-right: 10px;
+	background-color: grey;
+	text-align: center;
+	transition: all 300ms ease;
+	margin-bottom: 10px;
+}
+
+.pie-pagina .grupo1 .red-social a:hover {
+	cursor: pointer;
+	color: #182350;
+}
+
+.pie-pagina .grupo2 {
+	background-color: #0a1a2a;
+	padding: 15px 10px;
+	text-align: center;
+	color: white;
+}
+
+@media screen and ( max-width : 550px) {
+	.pie-pagina .grupo1 {
+		width: 90%;
+		grid-template-columns: 1fr;
+		grid-gap: 30px;
+		padding: 35px 0px;
+	}
 }

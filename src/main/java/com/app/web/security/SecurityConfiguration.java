@@ -34,7 +34,7 @@ public class SecurityConfiguration {
 	    @Autowired
 	    private ClienteRepository clienteRepository;
 
-	    @SuppressWarnings("deprecation")
+	    @SuppressWarnings({ "deprecation", "removal" })
 		@Bean
 	    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    	 http.authorizeRequests()
