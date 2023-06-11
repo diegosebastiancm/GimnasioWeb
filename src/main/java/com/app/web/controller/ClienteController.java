@@ -26,19 +26,9 @@ public class ClienteController {
 	@Autowired
 	RutinaSemanalRepository repositorioSemana;
 
-	@GetMapping("/inicio")
-	public String inicio() {
-		return "index";
-	}
-
 	@GetMapping()
-	public String verPaginaDeInicio(Model modelo) {
-		return "indexadmin";
-	}
-
-	@GetMapping("/prueba")
-	public String verPaginaDeInicioq(Model modelo) {
-		return "index";
+	public String inicio() {
+		return "index_cliente";
 	}
 
 	@GetMapping("/{id}/rutinasSemanales")
