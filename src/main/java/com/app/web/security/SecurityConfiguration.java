@@ -20,7 +20,9 @@ import com.app.web.repository.ClienteRepository;
 import com.app.web.repository.EntrenadorRepository;
 import com.app.web.repository.PersonaRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
 @Configuration
@@ -49,7 +51,7 @@ public class SecurityConfiguration {
 	            .formLogin()
 	            .loginPage("/login")
 	            .successHandler((request, response, authentication) -> {
-	                redirectAfterLogin(authentication, response);
+	                redirectAfterLogin(authentication, response, request);
 	            })
 	            .permitAll()
 	            .and()
@@ -63,14 +65,15 @@ public class SecurityConfiguration {
 			return http.build();
 	    }
 
-	    private void redirectAfterLogin(Authentication authentication, HttpServletResponse response) throws IOException {
+	    private void redirectAfterLogin(Authentication authentication, HttpServletResponse response, HttpServletRequest request) throws IOException {
 	        String username = authentication.getName();
-
 	        Persona persona = personaRepository.findByEmail(username);
 	        Cliente cliente = clienteRepository.findByPersona_id(persona.getId());
 	        Entrenador entrenador = entrenadorRepository.findByPersona_id(persona.getId());
 	        
 	        if (cliente != null) {
+	        	HttpSession session = request.getSession();
+	            session.setAttribute("clienteId", cliente.getPersona_id());
 	            response.sendRedirect("/cliente");
 	            return;
 	        }

@@ -7,13 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.app.web.entities.Cliente;
 import com.app.web.entities.Rutina;
 import com.app.web.entities.Rutina_Semanal;
 import com.app.web.repository.ClienteRepository;
 import com.app.web.repository.RutinaRepository;
 import com.app.web.repository.RutinaSemanalRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/cliente")
@@ -29,11 +30,13 @@ public class ClienteController {
 	RutinaSemanalRepository repositorioSemana;
 
 	@GetMapping()
-	public String inicio(Model modelo, Cliente cliente){
-		
+	public String inicio(Model modelo, HttpSession session){
+		Integer clienteId =  (Integer) session.getAttribute("clienteId");
+		Cliente cliente = repositorio.findById(clienteId).get();
+		modelo.addAttribute("cliente", cliente);
 	    return "inicio_cliente";
 	}
-
+	
 	@GetMapping("/{id}/rutinasSemanales")
 	public String verRutinaSemanal(@PathVariable("id") Integer id, Model modelo) {
 		List<Rutina_Semanal> rutinasSemanales = repositorioSemana.findByCliente(repositorio.findById(id).get());

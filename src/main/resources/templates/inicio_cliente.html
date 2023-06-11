@@ -27,8 +27,10 @@
 		<div class="contenedor-texto">
 			<h1>¡Iniciemos!</h1>
 		</div>
-		<div class="ver-rutinas" th:each="cliente : ${clientes}">
-			<a th:href="@{/cliente/{id}/rutinasSemanales(id=${cliente.persona_id})}" type="button" class="btn btn-light">Ver Rutinas</a>
+		<div class="ver-rutinas">
+			<a
+				th:href="@{/cliente/{id}/rutinasSemanales(id=${cliente.persona_id})}"
+				type="button" class="btn btn-light">Ver Rutinas</a>
 		</div>
 	</div>
 	<footer th:insert="~{footer::footer}"></footer>
