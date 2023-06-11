@@ -39,8 +39,10 @@ public class ClienteController {
 	
 	@GetMapping("/{id}/rutinasSemanales")
 	public String verRutinaSemanal(@PathVariable("id") Integer id, Model modelo) {
+		Cliente cliente = repositorio.findById(id).get();
 		List<Rutina_Semanal> rutinasSemanales = repositorioSemana.findByCliente(repositorio.findById(id).get());
 		modelo.addAttribute("rutinasSemanales", rutinasSemanales);
+		modelo.addAttribute("cliente", cliente);
 		return "cliente_semanas";
 	}
 

@@ -8,6 +8,13 @@
 	background-color: #e6e6e6;
 }
 
+.logo {
+	width: 100px;
+	height: 100px;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
 .clienteRutinas {
 	background-color: #8F8F8F;
 }
@@ -137,12 +144,7 @@
   }
 }
 
-.logo {
-	width: 100px;
-	height: 100px;
-	margin-left: 40px;
-	margin-right: 40px;
-}
+
 
 .navbar-nav {
 	font-size: 1.2rem;
