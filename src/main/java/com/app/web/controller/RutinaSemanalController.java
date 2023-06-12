@@ -38,11 +38,9 @@ public class RutinaSemanalController {
 	@GetMapping("/rutinas_semana/nuevo")
 	public String mostrarFormulario(Model modelo) {
 		List<Rutina> listaRutinas = repositorioRutina.findAll();
-		List<Cliente> listaclientes = repositorioCliente.findAll();
 		Rutina_Semanal rutina = new Rutina_Semanal();
 		modelo.addAttribute("rutinasSemanales", rutina);
 		modelo.addAttribute("rutinas", listaRutinas);
-		modelo.addAttribute("clientes", listaclientes);
 		return "crear_rutina_semanal";
 	}
 
