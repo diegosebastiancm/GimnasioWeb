@@ -1,21 +1,16 @@
-@charset "utf-8";
+@charset "ISO-8859-1";
 
-body {
-	background-color: rgba(130, 119, 125, 0.34);
-	 overflow: hidden;
+* {
+	box-sizing: border-box;
 }
 
-.login-form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
+.header {
+	background-color: #e6e6e6;
 }
 
-.carousel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
+.logo {
+	width: 100px;
+	height: 100px;
+	margin-left: 40px;
+	margin-right: 40px;
 }

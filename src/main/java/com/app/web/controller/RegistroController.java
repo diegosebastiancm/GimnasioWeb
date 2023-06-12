@@ -18,20 +18,6 @@ public class RegistroController {
     public String iniciarSesion() {
         return "login";
     } 
-    
-  
-
-    @GetMapping("/admin/index")
-    public String verPaginaDeInicioAdministrador(Model modelo) {
-        modelo.addAttribute("personas", servicio.listarPersonas());
-        return "administradorindex";
-    }
-    
-    @GetMapping()
-    public String verPaginaDeInicio(Model modelo) {
-        modelo.addAttribute("personas", servicio.listarPersonas());
-        return "indexadmin";
-    }
    
 }
 
