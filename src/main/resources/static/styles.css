@@ -38,31 +38,31 @@
 	border-radius: 20px;
 	box-shadow: 5px 8px 12px #4D4D4D;
 	object-fit: cover;
-	border-radius: 20px;
 }
+
 .container-fluid {
-  height: 100vh; /* El contenedor ocupa el 100% del alto de la pantalla */
-  width: 100%; /* El contenedor ocupa el 100% del ancho de la pantalla */
-  display: flex;
+	height: 100vh;
+	width: 100%;
+	display: flex;
 }
 
 .container-fluid .row {
-  width: 50%; /* Cada fila ocupa el 50% del ancho del contenedor */
+	width: 50%;
 }
 
 .container-fluid .row .col-md-6 {
-  width: 100%; /* Cada columna ocupa el 100% del ancho de la fila */
-  padding: 20px;
+	width: 100%;
+	padding: 20px;
 }
 
 .carrusel {
-  width: 50%; /* El carrusel ocupa el 50% del ancho del contenedor */
-  margin: 0;
+	width: 50%;
+	margin: 0;
 }
 
 .carousel-item img {
-  width: 100%;
-  height: auto;
+	width: 100%;
+	height: auto;
 }
 
 .overlay {
@@ -128,23 +128,21 @@
 
 @media ( max-width : 1000px) {
 	.contenedor {
-    background-position: right center;
-  }
+		background-position: right center;
+	}
 }
 
 @media ( max-width : 768px) {
 	.contenedor {
-    background-position: right center;
-  }
+		background-position: right center;
+	}
 }
 
 @media ( max-width : 480px) {
 	.contenedor {
-    background-position: right center;
-  }
+		background-position: right center;
+	}
 }
-
-
 
 .navbar-nav {
 	font-size: 1.2rem;
@@ -214,4 +212,50 @@
 		grid-gap: 30px;
 		padding: 35px 0px;
 	}
+}
+
+.rutina-semanal {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 30px;
+	margin: 70px;
+}
+
+.clienteSemanas {
+	position: relative;
+}
+
+.clienteSemanas::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url("/images/fondoGym.jpg");
+	background-size: cover;
+	background-position: center;
+	opacity: 0.8;
+	z-index: -1;
+}
+
+.rutina-semanal .cuadro {
+	overflow:hidden;
+	border-radius: 20px;
+	background-color: grey;
+	box-shadow: 5px 8px 12px #0a1a2a;
+	padding: 25px 0px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.rutina-semanal .cuadro:hover{
+	transform: scale(1,1);
+	box-shadow: 13px 15px 37px #0a1a2a;
+}
+
+.rutina-semanal .cuadro .texto-semana{
+	text-align: center;
+	color: white;
+	font-size: 30px;
 }

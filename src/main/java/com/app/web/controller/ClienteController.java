@@ -49,6 +49,7 @@ public class ClienteController {
 	@GetMapping("/{id}/rutinasSemanales/{id_rutina}")
 	public String verRutinaDiaria(@PathVariable("id") Integer id, @PathVariable("id_rutina") Integer id_rutina,
 			Model modelo) {
+		Cliente cliente = repositorio.findById(id).get();
 		List<Rutina_Semanal> rutinasSemanales = repositorioSemana.findByCliente(repositorio.findById(id).get());
 		Rutina_Semanal rutinaSemana = null;
 		for (Rutina_Semanal rutina : rutinasSemanales) {
@@ -58,6 +59,7 @@ public class ClienteController {
 			}
 		}
 		List<Rutina> rutinasDiarias = repositorioRutina.findByRutinaSemanal(rutinaSemana);
+		modelo.addAttribute("cliente", cliente);
 		modelo.addAttribute("rutinasDiarias", rutinasDiarias);
 		return "cliente_rutinas";
 	}
