@@ -221,7 +221,7 @@
 	margin: 70px;
 }
 
-.cuerpo-dia-rutina {
+.clienteSemanas {
 	position: relative;
 }
 
@@ -303,8 +303,4 @@
 	width: 80%;
 	height: 20px;
 	grid-gap: 30px;
-}
-
-.botones a {
-	
 }
