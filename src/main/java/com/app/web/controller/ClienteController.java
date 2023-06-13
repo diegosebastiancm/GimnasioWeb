@@ -105,6 +105,7 @@ public class ClienteController {
 	public String verHistorialEjercicios(@PathVariable("id") Integer id, Model modelo) {
 		Cliente cliente =  repositorio.findByPersona_id(id);
 		List<Ejercicio_Realizado> ejerciciosRealizados = repositorioHistorial.findByCliente(cliente);
+		modelo.addAttribute("cliente", cliente);
 		modelo.addAttribute("ejerciciosRealizados", ejerciciosRealizados);
 		return "cliente_historial";
 	}
