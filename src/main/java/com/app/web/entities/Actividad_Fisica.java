@@ -1,10 +1,13 @@
 package com.app.web.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -23,4 +26,7 @@ public class Actividad_Fisica {
 
 	@Column(name = "link", nullable=false)
 	private String link;
+	
+	@OneToMany(mappedBy="ejercicio")
+	private List<Ejercicio> ejercicios;
 }

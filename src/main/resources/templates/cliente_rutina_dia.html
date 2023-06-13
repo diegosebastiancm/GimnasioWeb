@@ -6,10 +6,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-
 <link rel="stylesheet" href="/styles.css">
 <script src="https://kit.fontawesome.com/43d3343120.js"></script>
-<title>Insert title here</title>
+<title>Ejercicios</title>
 </head>
 <body class="cuerpo-dia-rutina">
 	<header class="header" th:insert="~{header::nav}"></header>
@@ -17,27 +16,37 @@
 	<h1 class="dia-semana">
 		<span th:text="${rutinasDia.dia_semana}"></span>
 	</h1>
-	<br>
 	<section class="dia-rutina">
 		<div class="cuadro-ejercicio"
 			th:each="ejercicio, i : ${ejerciciosRutina}">
-			<img class="img-fluid" th:srcset="${imagenPorEjercicio(ejercicio.ejercicio.id_actividad)}">
-			<span></span>
+			<img class="img-fluid" th:srcset="@{/images/sentadilla.png}">
+			<div class="nombre-ejercicio">
+				<h2>
+					<span th:text="${ejercicio.ejercicio.nombre_actividad}"></span>
+				</h2>
+				<div class="descripcion-ejercicio">
+					<p>
+						Repeticiones:<span th:text="${ejercicio.repeticiones}"></span>
+					</p>
+					<p>
+						Series:<span th:text="${ejercicio.series}"></span>
+					</p>
+					<p>
+						Peso: <span th:if="${ejercicio.peso_ejercicio != null}"
+							th:text="${ejercicio.peso_ejercicio}"></span> <span
+							th:unless="${ejercicio.peso_ejercicio != null}">sin peso</span>
+					</p>
+				</div>
+			</div>
+			<div class="botones">
+				<a th:href="${ejercicio.ejercicio.link}" type="button"
+					class="btn btn-light">Ver Ejercicio</a><a
+					th:href="@{/cliente/{id}/rutinasSemanales(id=${cliente.persona_id})}"
+					type="button" class="btn btn-light">Progreso</a>
+			</div>
 		</div>
 	</section>
-	<br>
 	<footer th:insert="~{footer::footer}"></footer>
-	<script>
-		function imagenPorEjercicio(actividad) {
-			var imagenes = {
-				1 : 'caminadora.jpg',
-				2 : 'sentadilla.jpg',
-				3 : 'aerobicos.jpg'
-			};
-
-			return imagenes[actividad];
-		}
-	</script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
