@@ -23,14 +23,18 @@
 </head>
 <body class="clienteSemanas">
 	<header class="header" th:insert="~{header::nav}"></header>
-	<section class="rutina-semanal" th:each="rutina, i : ${rutinasSemanales}">
-	<a th:href="@{/cliente/{id}/rutinasSemanales/{id_rutina}(id=${cliente.persona_id}, id_rutina=${rutina.id_rutina_semanal})}"
-		class="cuadro">
-		<div class="texto-semana">
-			<h2>Semana <span th:text="${i.count}"></span></h2>
-		</div>
-	</a>
-</section>
+	<section class="rutina-semanal"
+		th:each="rutina, i : ${rutinasSemanales}">
+		<a
+			th:href="@{/cliente/{id}/rutinasSemanales/{id_rutina}(id=${cliente.persona_id}, id_rutina=${rutina.id_rutina_semanal})}"
+			class="cuadro">
+			<div class="texto-semana">
+				<h2>
+					Semana <span th:text="${i.count}"></span>
+				</h2>
+			</div>
+		</a>
+	</section>
 	<footer th:insert="~{footer::footer}"></footer>
 
 </body>

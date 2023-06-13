@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.app.web.entities.Cliente;
+import com.app.web.entities.Ejercicio;
 import com.app.web.entities.Rutina;
 import com.app.web.entities.Rutina_Semanal;
 import com.app.web.repository.ClienteRepository;
+import com.app.web.repository.EjercicioRepository;
 import com.app.web.repository.RutinaRepository;
 import com.app.web.repository.RutinaSemanalRepository;
 
@@ -28,6 +30,9 @@ public class ClienteController {
 
 	@Autowired
 	RutinaSemanalRepository repositorioSemana;
+	
+	@Autowired
+	EjercicioRepository repositorioEjercicio;
 
 	@GetMapping()
 	public String inicio(Model modelo, HttpSession session){
@@ -66,7 +71,7 @@ public class ClienteController {
 
 	@GetMapping("/{id}/rutinasSemanales/{id_rutina}/{id_dia}")
 	public String verRutinaDiaria(@PathVariable("id") Integer id, @PathVariable("id_rutina") Integer id_rutina,
-			@PathVariable("id_dia") Integer dia, Model modelo) {
+			@PathVariable("id_dia") Integer dia, Model modelo, HttpSession session) {
 		List<Rutina_Semanal> rutinasSemanales = repositorioSemana.findByCliente(repositorio.findById(id).get());
 		Rutina_Semanal rutinaSemana = null;
 		for (Rutina_Semanal rutina : rutinasSemanales) {
@@ -83,7 +88,12 @@ public class ClienteController {
 				break;
 			}
 		}
+		List<Ejercicio> ejerciciosRutina = repositorioEjercicio.findByRutina(rutinaDiaria);
+		Integer clienteId =  (Integer) session.getAttribute("clienteId");
+		Cliente cliente = repositorio.findById(clienteId).get();
+		modelo.addAttribute("cliente", cliente);
 		modelo.addAttribute("rutinasDia", rutinaDiaria);
+		modelo.addAttribute("ejerciciosRutina", ejerciciosRutina);
 		return "cliente_rutina_dia";
 	}
 

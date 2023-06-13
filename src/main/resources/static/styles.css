@@ -259,3 +259,16 @@
 	color: white;
 	font-size: 30px;
 }
+
+.cuerpo-dia-rutina{
+	background-color: #0a1a2a;
+}
+
+.cuerpo-dia-rutina .dia-semana{
+	text-align: center;
+	color: white;
+}
+
+.cuerpo-dia-rutina .cuadro-ejercicio{
+	background-color: grey;
+}

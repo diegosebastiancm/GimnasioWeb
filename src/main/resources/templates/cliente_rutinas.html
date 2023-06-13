@@ -16,50 +16,16 @@
 	<br>
 	<h1 class="titulo1">Rutina Semanal</h1>
 	<br>
-	<section class="container">
-		<div class="imagen">
-			<img class="img-fluid" th:srcset="@{/images/imagen15.jpg}">
+	<section class="container" >
+		<a class="imagen" th:each="rutina, i : ${rutinasDiarias}"
+			th:href="@{/cliente/{id}/rutinasSemanales/{id_rutina}/{id_dia}(id=${cliente.persona_id}, id_rutina=${rutina.rutinaSemanal.id_rutina_semanal}, id_dia=${rutina.id_rutina_diaria})}">
+			<img class="img-fluid" th:srcset="@{'/images/' + (i.count) + '.jpg'}">
 			<div class="overlay">
-				<h2>Lunes</h2>
+				<h2 th:text="${rutina.dia_semana}"></h2>
 			</div>
-		</div>
-		<div class="imagen">
-			<img class="img-fluid" th:srcset="@{/images/imagen18.jpg}">
-			<div class="overlay">
-				<h2>Martes</h2>
-			</div>
-		</div>
-		<div class="imagen">
-			<img class="img-fluid" th:srcset="@{/images/imagen14.jpg}">
-			<div class="overlay">
-				<h2>Miercoles</h2>
-			</div>
-		</div>
-		<div class="imagen">
-			<img class="img-fluid" th:srcset="@{/images/imagen10.jpg}">
-			<div class="overlay">
-				<h2>Jueves</h2>
-			</div>
-		</div>
-		<div class="imagen">
-			<img class="img-fluid" th:srcset="@{/images/imagen2.jpg}">
-			<div class="overlay">
-				<h2>Viernes</h2>
-			</div>
-		</div>
-		<div class="imagen">
-			<img class="img-fluid" th:srcset="@{/images/imagen6.jpg}">
-			<div class="overlay">
-				<h2>Sabado</h2>
-			</div>
-		</div>
-		<div class="imagen">
-			<img class="img-fluid" th:srcset="@{/images/imagen1.jpg}">
-			<div class="overlay">
-				<h2>Domingo</h2>
-			</div>
-		</div>
+		</a>
 	</section>
+
 	<br>
 	<footer th:insert="~{footer::footer}"></footer>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

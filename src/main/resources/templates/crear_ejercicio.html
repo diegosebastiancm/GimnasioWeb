@@ -44,10 +44,10 @@
 								placeholder="Digite las series que requiere el ejercicio">
 						</div>
 						<div class="form-group">
-							<label>Dia Rutina: </label> <select th:field="*{rutina}"
+							<label>Id Rutina: </label> <select th:field="*{rutina}"
 								class="form-control" required>
 								<th:block th:each="rutina : ${rutinas}">
-									<option th:text="${rutina.dia_semana}"
+									<option th:text="${rutina.id_rutina_diaria}"
 										th:value="${rutina.id_rutina_diaria}"></option>
 								</th:block>
 							</select>
