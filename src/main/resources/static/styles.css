@@ -240,7 +240,7 @@
 }
 
 .rutina-semanal .cuadro {
-	overflow:hidden;
+	overflow: hidden;
 	border-radius: 20px;
 	background-color: grey;
 	box-shadow: 5px 8px 12px #0a1a2a;
@@ -249,39 +249,62 @@
 	transition: all 0.3s ease-in-out;
 }
 
-.rutina-semanal .cuadro:hover{
-	transform: scale(1,1);
+.rutina-semanal .cuadro:hover {
+	transform: scale(1, 1);
 	box-shadow: 13px 15px 37px #0a1a2a;
 }
 
-.rutina-semanal .cuadro .texto-semana{
+.rutina-semanal .cuadro .texto-semana {
 	text-align: center;
 	color: white;
 	font-size: 30px;
 }
 
-.cuerpo-dia-rutina{
+.cuerpo-dia-rutina {
 	background-color: #0a1a2a;
 }
 
-.cuerpo-dia-rutina .dia-semana{
+.cuerpo-dia-rutina .dia-semana {
 	text-align: center;
 	color: white;
 }
 
-
-.dia-rutina{
+.dia-rutina {
 	position: relative;
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: repeat(2,1fr);
 	grid-gap: 30px;
-	margin: 70px;
+	margin-bottom:70px;
+	margin-top:70px;
+	margin-left: 100px;
+	margin-right: 100px;
 }
 
-.dia-rutina .cuadro-ejercicio{
+.dia-rutina .cuadro-ejercicio {
 	border-radius: 20px;
 	background-color: grey;
 	box-shadow: 5px 8px 12px #0a1a2a;
 	padding: 25px 0px;
+}
+
+.cuadro-ejercicio {
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+}
+
+.imagen-ejercicio {
+	width: 150px;
+	height: 150px;
+}
+
+.cuadro-ejercicio .botones{
+	display: grid;
+	grid-template-columns: 1fr;
+	width: 80%;
+	height: 20px;
+	grid-gap: 30px;
+}
+
+.botones a {
 	
 }

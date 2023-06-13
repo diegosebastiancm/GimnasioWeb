@@ -19,7 +19,7 @@
 	<section class="dia-rutina">
 		<div class="cuadro-ejercicio"
 			th:each="ejercicio, i : ${ejerciciosRutina}">
-			<img class="img-fluid" th:srcset="@{/images/sentadilla.png}">
+			<img class="imagen-ejercicio" th:srcset="@{/images/sentadilla.png}">
 			<div class="nombre-ejercicio">
 				<h2>
 					<span th:text="${ejercicio.ejercicio.nombre_actividad}"></span>
@@ -41,7 +41,7 @@
 			<div class="botones">
 				<a th:href="${ejercicio.ejercicio.link}" type="button"
 					class="btn btn-light">Ver Ejercicio</a><a
-					th:href="@{/cliente/{id}/rutinasSemanales(id=${cliente.persona_id})}"
+					th:href="@{/}"
 					type="button" class="btn btn-light">Progreso</a>
 			</div>
 		</div>
