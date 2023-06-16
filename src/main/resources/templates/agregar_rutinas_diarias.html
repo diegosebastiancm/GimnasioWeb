@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<title>Agregar Rutinas Diarias</title>
+</head>
+<body>
+	<div class="container">
+		<h1 class="mt-4">Agregar Rutinas Diarias</h1>
+		<h3 class="mt-4">Rutinas Diarias:</h3>
+		<h3 class="mt-4">Agregar Rutinas Diarias:</h3>
+		<form th:action="@{/rutinas_semana/{id}/rutinas}"
+			th:object="${rutinasDiariasDisponibles}" method="post">
+			<div class="form-group">
+				<select class="form-control" name="rutinaDiaria">
+					<option th:each="rutina : ${rutinasDiariasDisponibles}"
+						th:value="${rutina.id_rutina_diaria}"
+						th:text="${rutina.dia_semana}"></option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Agregar Rutina
+				Diaria</button>
+		</form>
+	</div>
+</body>
+</html>
