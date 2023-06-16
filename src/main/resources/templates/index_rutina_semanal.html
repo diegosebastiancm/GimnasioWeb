@@ -24,11 +24,11 @@
 		<tbody>
 			<tr th:each="rutina : ${rutinas}">
 				<td th:text="${rutina.id_rutina_semanal}">Id</td>
-				<td th:text="${rutina.fecha_de_inicio}">Nombre Actividad</td>
+				<td th:text="${rutina.fecha_de_inicio}">Dia semana</td>
 				<td th:text="${rutina.fecha_de_fin}">Rutina Semana</td>
 				<td th:text="${rutina.cliente.persona_id}">Objetivo</td>
 				<td><a
-					th:href="@{/rutinas_Semana/{id}/rutinas(id=${rutina.id_rutina_semanal})}"
+					th:href="@{/rutinas_semana/{id}/rutinas(id=${rutina.id_rutina_semanal})}"
 					class="btn btn-info">Rutinas</a></td>
 				<td><a
 					th:href="@{/rutinas_semana/{id}/editar(id=${rutina.id_rutina_semanal})}"

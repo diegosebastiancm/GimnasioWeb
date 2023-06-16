@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.web.entities.Cliente;
 import com.app.web.entities.Rutina;
@@ -21,13 +22,13 @@ public class RutinaSemanalController {
 
 	@Autowired
 	RutinaSemanalRepository repositorio;
-	
+
 	@Autowired
 	RutinaRepository repositorioRutina;
-	
+
 	@Autowired
 	ClienteRepository repositorioCliente;
-	
+
 	@GetMapping("/rutinas_semana")
 	public String verRutinaSemanal(Model modelo) {
 		List<Rutina_Semanal> rutinasSemanales = repositorio.findAll();
@@ -61,8 +62,8 @@ public class RutinaSemanalController {
 	}
 
 	@PostMapping("/rutinas_semana/{id_rutina}")
-	public String actualizarRutinaSemanal(@PathVariable("id") Integer id, @ModelAttribute("rutina_semanal") Rutina_Semanal rutina,
-			Model modelo) {
+	public String actualizarRutinaSemanal(@PathVariable("id") Integer id,
+			@ModelAttribute("rutina_semanal") Rutina_Semanal rutina, Model modelo) {
 		List<Rutina> listaRutinas = repositorioRutina.findAll();
 		Rutina_Semanal rutinaActual = repositorio.findById(id).get();
 		rutinaActual.setId_rutina_semanal(id);
@@ -80,12 +81,32 @@ public class RutinaSemanalController {
 		repositorio.deleteById(id);
 		return "redirect:/rutinas_semana";
 	}
-	
-	@GetMapping("/rutinas_Semana/{id}/rutinas")
-	public String mostrarRutinasDiarias(@PathVariable("id")Integer id, Model modelo) {
-		Rutina_Semanal rutina = repositorio.findById(id).get();
-		List<Rutina> listaRutinas = repositorioRutina.findByRutinaSemanal(rutina);
-		modelo.addAttribute("rutinas", listaRutinas);
-		return "index_rutina";
+
+	@GetMapping("/rutinas_semana/{id}/rutinas")
+	public String verRutinasDiarias(@PathVariable("id") Integer idRutinaSemana, Model modelo) {
+		Rutina_Semanal rutinaSemana = repositorio.findById(idRutinaSemana).orElse(null);
+		List<Rutina> rutinasDiariasDisponibles = repositorioRutina.findAll();
+		modelo.addAttribute("rutinaSemana", rutinaSemana);
+		modelo.addAttribute("rutinasDiariasDisponibles", rutinasDiariasDisponibles);
+		return "ver_rutinas_diarias";
+	}
+
+	@GetMapping("/rutinas_semana/{id}/nuevaRutina")
+	public String mostrarFormularioRutinasDiarias(@PathVariable("id") Integer idRutinaSemana, Model modelo) {
+		Rutina_Semanal rutinaSemana = repositorio.findById(idRutinaSemana).orElse(null);
+		List<Rutina> rutinasDiariasDisponibles = repositorioRutina.findAll();
+		modelo.addAttribute("rutinaSemana", rutinaSemana);
+		modelo.addAttribute("rutinasDiariasDisponibles", rutinasDiariasDisponibles);
+		return "agregar_rutinas_diarias";
+	}
+
+	@PostMapping("/rutinas_semana/{id_rutinaSemana}/rutinas")
+	public String agregarRutinaDiaria(@PathVariable("id_rutinaSemana") Integer idRutinaSemana,
+			@RequestParam("rutinaDiaria") Integer idRutinaDiaria) {
+		Rutina_Semanal rutinaSemana = repositorio.findById(idRutinaSemana).get();
+		Rutina rutinaDiaria = repositorioRutina.findById(idRutinaDiaria).get();
+			rutinaSemana.getRutinas().add(rutinaDiaria);
+			repositorio.save(rutinaSemana);
+		return "redirect:/rutinas_semana/" + idRutinaSemana + "/rutinas";
 	}
 }

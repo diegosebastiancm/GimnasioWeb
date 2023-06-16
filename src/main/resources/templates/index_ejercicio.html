@@ -9,12 +9,12 @@
 <title>Actividad Fisica</title>
 </head>
 <body>
+	<a th:href="@{/ejercicios/nuevo}">Agregar Ejercicio</a>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th scope="col">Id</th>
 				<th scope="col">Nombre Ejercicio</th>
-				<th scope="col">Video Instructivo</th>
 				<th scope="col">Peso</th>
 				<th scope="col">Repeticiones</th>
 				<th scope="col">Series</th>
@@ -26,8 +26,8 @@
 		<tbody>
 			<tr th:each="ejercicio : ${ejercicios}">
 				<td th:text="${ejercicio.id_ejercicio}">Id</td>
-				<td th:text="${ejercicio.ejercicio.id_actividad}">Nombre Ejercicio</td>
-				<td th:text="${ejercicio.ejercicio.link}">Video Intructivo</td>
+				<td th:text="${ejercicio.ejercicio.nombre_actividad}">Nombre
+					Ejercicio</td>
 				<td th:text="${ejercicio.peso_ejercicio}">Peso</td>
 				<td th:text="${ejercicio.repeticiones}">Repeticiones</td>
 				<td th:text="${ejercicio.series}">Series</td>
@@ -41,6 +41,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<a th:href="@{/ejercicios/nuevo}">Agregar Ejercicio</a>
+
 </body>
 </html>
