@@ -38,4 +38,5 @@ public class Ejercicio {
 	@ManyToOne
 	@JoinColumn(name="id_rutina_diaria")
 	private Rutina rutina;
+	
 }

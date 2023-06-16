@@ -13,7 +13,7 @@
 		<h1 class="mt-4">Agregar Rutinas Diarias</h1>
 		<h3 class="mt-4">Rutinas Diarias:</h3>
 		<h3 class="mt-4">Agregar Rutinas Diarias:</h3>
-		<form th:action="@{/rutinas_semana/{id}/rutinas}"
+		<form th:action="@{/rutinas_semana/{id}/rutinas(id=${rutinaSemana.id_rutina_semanal})}"
 			th:object="${rutinasDiariasDisponibles}" method="post">
 			<div class="form-group">
 				<select class="form-control" name="rutinaDiaria">
