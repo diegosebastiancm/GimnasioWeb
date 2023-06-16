@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Registro de Entrenadores</title>
+<!-- Latest compiled and minified CSS -->
+</head>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="/styles2.css">
+<body>
+		<header class="header" th:insert="~{headeradmin::nav}"></header>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div th:if=${param.exito}>
+					<div class="alert alert-info">Se ha registrado exitosamente a
+						la aplicación</div>
+				</div>
+
+				<h1>Regístrate</h1>
+				<form th:action="@{/admin/registrarEntrenador}" method="post" th:object="${persona}">
+					<div class="form-group">
+						<label>Documento </label> <input type="text" name="documento"
+							th:field="*{documento}" class="form-control"
+							placeholder="Digite su documento">
+					</div>
+					<div class="form-group">
+						<label>Nombre </label> <input type="text" name="nombre"
+							th:field="*{nombre}" class="form-control"
+							placeholder="Digite su nombre">
+					</div>
+					<div class="form-group">
+						<label>Apellido </label> <input type="text" name="apellido"
+							th:field="*{apellido}" class="form-control"
+							placeholder="Digite su apellido">
+					</div>
+
+					<div class="form-group">
+						<label>Telefono </label> <input type="text" name="telefono"
+							th:field="*{telefono}" class="form-control"
+							placeholder="Digite su telefono">
+					</div>
+
+					<div class="form-group">
+						<label>Email </label> <input type="email" name="email"
+							th:field="*{email}" class="form-control"
+							placeholder="Digite su email">
+					</div>
+                     <div class="form-group">
+							<label>Genero :</label>
+							<div>
+								<select th:field="*{genero}" class="form-control" required>
+									<th:block th:each="genero: ${generos}">
+										<option th:text="${genero}" th:value="${genero}"></option>
+									</th:block>
+								</select>
+							</div>
+						</div>
+					<div class="form-group">
+						<label>Contraseña</label> <input type="password" name="password"
+							th:field="*{password}" class="form-control"
+							placeholder="Digite su Contraseña">
+					</div>
+
+					<div class="form-group">
+						<label>Direccion</label> <input type="text" name="direccion"
+							class="form-control" placeholder="Digite su direccion">
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Registrar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+

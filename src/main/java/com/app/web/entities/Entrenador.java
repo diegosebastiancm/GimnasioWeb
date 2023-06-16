@@ -1,5 +1,6 @@
 package com.app.web.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,7 +25,7 @@ public class Entrenador {
 	private int persona_id;
 	@Column(name = "direccion", nullable = false)
 	private String direccion;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@MapsId
     @JoinColumn(name = "persona_id")
 	private Persona persona;

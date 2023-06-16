@@ -2,6 +2,7 @@ package com.app.web.entities;
 
 import java.math.BigDecimal;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -59,9 +60,15 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente")
 	private List<Ejercicio_Realizado> ejercicioRealizado;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@MapsId
 	@JoinColumn(name = "persona_id")
 	private Persona persona;
+	
+	public BigDecimal getImc() {
+		imc = peso.divide(altura.multiply(altura), 2, BigDecimal.ROUND_HALF_UP);
+		return imc;
+	}
+	
 
 }
